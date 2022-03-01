@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Receipt from "./Receipt.jsx";
 
 const Form = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,102 +23,80 @@ const Form = () => {
   };
 
   return (
-    <form action="mailto:dbt220@gmail.com" method="post" enctype="text/plain">
-      <label
-        htmlFor="name"
-      >Name</label>
-      <input
-        name="name"
-        id="name"
-        value={form.name}
-        onChange={handleChange}
-      />
+    <form className="main-form" 
+      action="mailto:dbt220@gmail.com" 
+      method="post" 
+      enctype="text/plain"
+    >
+      <div className="name">
+        <label
+          htmlFor="name"
+        >Name</label>
+        <input
+          name="name"
+          id="name"
+          value={form.name}
+          onChange={handleChange}
+        />
+      </div>
 
-      <label
-        htmlFor="start"
-      >Start</label>
-      <input
-        type="date"
-        name="start"
-        id="start"
-        value={form.start}
-        onChange={handleChange}
-      />
+      <div className="startdate">
+        <label
+          htmlFor="start"
+        >Start</label>
+        <input
+          type="date"
+          name="start"
+          id="start"
+          value={form.start}
+          onChange={handleChange}
+        />
+      </div> 
 
-      <label
-        htmlFor="finish"
-      >Finish</label>
-      <input
-        type="date"
-        name="finish"
-        id="finish"
-        value={form.finish}
-        onChange={handleChange}
-      />
+      <div className="finishdate">
+        <label
+          htmlFor="finish"
+        >Finish</label>
+        <input
+          type="date"
+          name="finish"
+          id="finish"
+          value={form.finish}
+          onChange={handleChange}
+        />
+      </div>
+      
+      <div className="serial">
+        <label
+          htmlFor="ASN"
+        >Aircraft Serial Number</label>
+        <input
+          name="ASN"
+          id="ASN"
+          value={form.ASN}
+          onChange={handleChange}
+        />
+      </div>
+      
+      <div className="receipt">
+        <button 
+          type="button"
+          onClick={() => setIsVisible(!isVisible)}
+        >New Receipt</button>
+        <Receipt
+          isVisible={isVisible}
+          setIsVisible={setIsVisible}
+          form={form}
+          setForm={setForm}
+        />
+      </div>
 
-      <label
-        htmlFor="AOHS"
-      >Aircraft Organization and Home Station</label>
-      <input
-        name="AOHS"
-        id="AOHS"
-        value={form.AOHS}
-        onChange={handleChange}
-      />
-
-      <label
-        htmlFor="APC"
-      >Aircraft Processing Command</label>
-      <input
-        name="APC"
-        id="APC"
-        value={form.APC}
-        onChange={handleChange}
-      />
-
-      <label
-        htmlFor="AMDS"
-      >Aircraft MDS</label>
-      <input
-        name="AMDS"
-        id="AMDS"
-        value={form.AMDS}
-        onChange={handleChange}
-      />
-
-      <label
-        htmlFor="ASN"
-      >Aircraft Serial Number</label>
-      <input
-        name="ASN"
-        id="ASN"
-        value={form.ASN}
-        onChange={handleChange}
-      />
-
-      <button 
-        type="button"
-        onClick={() => setIsVisible(true)}
-      >Add Refuel</button>
-
-      {isVisible? 
-        <form>
-          <label>Date</label>
-          <input 
-          
-          />
-
-          <label>Airfield Name</label>
-          <input
-          
-          />
-        </form>
-      : null}
-
-      <input
-        type="submit"
-        value="Submit"
-      />
+      <div className="submit">
+        <input
+          type="submit"
+          value="Submit"
+        />
+      </div>
     </form>
   )
 }
