@@ -1,0 +1,24 @@
+.item1 { grid-area: name; }
+.item2 { grid-area: dates; }
+.item3 { grid-area: serial; }
+.item4 { grid-area: rsd; }
+.item5 { grid-area: afn; }
+.item6 { grid-area: afa; }
+.item7 { grid-area: tof; }
+.item8 { grid-area: qof; }
+.item9 { grid-area: tod; }
+.item10 { grid-area: in; }
+.item11 { grid-area: rec; }
+
+.form-container {
+  display: grid;
+  grid-template-areas: 
+  "name name dates dates dates serial serial"
+  "rsd afn afa tof qof tod in"
+  "rec rec rec rec rec rec rec";
+  margin: 20px;
+}
+
+.form-container > div {
+  border: 1px solid black;
+}
