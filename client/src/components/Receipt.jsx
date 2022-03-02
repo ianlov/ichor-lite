@@ -12,7 +12,7 @@ const Receipt = (props) => {
     unit: "gallons",
     typeofdoc: "receipt",
     invoicenumber: "",
-    image: null,
+    image: "",
   })
 
   const handleChange = (ev) => {

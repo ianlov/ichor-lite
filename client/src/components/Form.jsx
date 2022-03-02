@@ -27,7 +27,7 @@ const Form = () => {
     <form className="main-form" 
       action="mailto:dbt220@gmail.com" 
       method="post" 
-      enctype="text/plain"
+      encType="text/plain"
     >
       <div className="name">
         <label
