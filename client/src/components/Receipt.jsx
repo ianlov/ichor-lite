@@ -1,8 +1,9 @@
-import "../assets/css/Receipt.css";
+import "../css/Receipt.css";
 import { createPortal } from "react-dom";
 import { useState } from "react";
 
 const Receipt = (props) => {
+  const [isUpdate, setIsUpdate] = useState(false)
   const [receipt, setReceipt] = useState({
     date: "",
     airfield: "",
@@ -32,8 +33,18 @@ const Receipt = (props) => {
         receipt
       ]
     })
+    setReceipt({
+      date: "",
+      airfield: "",
+      address: "",
+      service: "",
+      quantity: "",
+      unit: "gallons",
+      typeofdoc: "receipt",
+      invoicenumber: "",
+      image: "",
+    })
     props.setIsVisible(!props.isVisible);
-    console.log("submitted receipt")
   }
 
   return props.isVisible? createPortal(
@@ -51,7 +62,6 @@ const Receipt = (props) => {
             id="date"
             value={receipt.date}
           />
-
           <label htmlFor="airfield">Airfield</label>
           <input
             onChange={handleChange}
@@ -60,7 +70,6 @@ const Receipt = (props) => {
             id="airfield"
             value={receipt.airfield}
           />
-
           <label htmlFor="address">Address</label>
           <input
             onChange={handleChange}
@@ -69,7 +78,6 @@ const Receipt = (props) => {
             id="address"
             value={receipt.address}
           />
-
           <label htmlFor="service">Type Fuel Service</label>
           <input
             onChange={handleChange}
@@ -78,7 +86,6 @@ const Receipt = (props) => {
             id="service"
             value={receipt.service}
           />
-
           <label htmlFor="quantity">Quanitity</label>
           <input
             onChange={handleChange}
@@ -87,7 +94,6 @@ const Receipt = (props) => {
             id="quantity"
             value={receipt.quantity}
           />
-
           <div className="units">
             <p>Units</p>
             <input 
@@ -108,7 +114,6 @@ const Receipt = (props) => {
             />
             <label htmlFor="liters">Liters</label>
           </div>
-          
           <label htmlFor="typeofdoc">Type of Document</label>
           <input
             onChange={handleChange}
@@ -117,7 +122,6 @@ const Receipt = (props) => {
             id="typeofdoc"
             value={receipt.typeofdoc}
           />
-
           <label htmlFor="invoicenumber">Invoice Number</label>
           <input
             onChange={handleChange}
@@ -126,16 +130,14 @@ const Receipt = (props) => {
             id="invoicenumber"
             value={receipt.invoicenumber}
           />
-
-          <label htmlFor="image">Image</label>
+          {/* <label htmlFor="image">Image</label>
           <input
             onChange={handleChange}
             type="file"
             name="image"
             id="image"
             value={receipt.image}
-          />
-
+          /> */}
           <div className="modal-buttons">
             <button>Submit</button>
             <button
