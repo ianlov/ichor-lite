@@ -9,9 +9,10 @@ const Receipt = (props) => {
     address: "",
     service: "",
     quantity: "",
-    unit: "",
+    unit: "gallons",
     typeofdoc: "receipt",
-    invoicenumber: ""
+    invoicenumber: "",
+    image: null,
   })
 
   const handleChange = (ev) => {
@@ -22,15 +23,17 @@ const Receipt = (props) => {
     });
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
     props.setForm({
       ...props.form,
       refuels: [
-        ...props.refuels,
+        ...props.form.refuels,
         receipt
       ]
     })
     props.setIsVisible(!props.isVisible);
+    console.log("submitted receipt")
   }
 
   return props.isVisible? createPortal(
@@ -42,7 +45,7 @@ const Receipt = (props) => {
         >
           <label htmlFor="date">Refuel Date</label>
           <input
-            handleChange={handleChange}
+            onChange={handleChange}
             type="date"
             name="date"
             id="date"
@@ -51,7 +54,7 @@ const Receipt = (props) => {
 
           <label htmlFor="airfield">Airfield</label>
           <input
-            handleChange={handleChange}
+            onChange={handleChange}
             type="text"
             name="airfield"
             id="airfield"
@@ -60,7 +63,7 @@ const Receipt = (props) => {
 
           <label htmlFor="address">Address</label>
           <input
-            handleChange={handleChange}
+            onChange={handleChange}
             type="text"
             name="address"
             id="address"
@@ -69,7 +72,7 @@ const Receipt = (props) => {
 
           <label htmlFor="service">Type Fuel Service</label>
           <input
-            handleChange={handleChange}
+            onChange={handleChange}
             type="text"
             name="service"
             id="service"
@@ -78,7 +81,7 @@ const Receipt = (props) => {
 
           <label htmlFor="quantity">Quanitity</label>
           <input
-            handleChange={handleChange}
+            onChange={handleChange}
             type="number"
             name="quantity"
             id="quantity"
@@ -91,7 +94,7 @@ const Receipt = (props) => {
               type="radio"
               name="unit"
               id="gallons"
-              value="gallons"
+              value="gal"
               checked="checked"
               onChange={handleChange}
             />
@@ -100,7 +103,7 @@ const Receipt = (props) => {
               type="radio"
               name="unit"
               id="liters"
-              value="liters"
+              value="lit"
               onChange={handleChange}
             />
             <label htmlFor="liters">Liters</label>
@@ -108,7 +111,7 @@ const Receipt = (props) => {
           
           <label htmlFor="typeofdoc">Type of Document</label>
           <input
-            handleChange={handleChange}
+            onChange={handleChange}
             type="text"
             name="typeofdoc"
             id="typeofdoc"
@@ -117,11 +120,20 @@ const Receipt = (props) => {
 
           <label htmlFor="invoicenumber">Invoice Number</label>
           <input
-            handleChange={handleChange}
+            onChange={handleChange}
             type="text"
             name="invoicenumber"
             id="invoicenumber"
             value={receipt.invoicenumber}
+          />
+
+          <label htmlFor="image">Image</label>
+          <input
+            onChange={handleChange}
+            type="file"
+            name="image"
+            id="image"
+            value={receipt.image}
           />
 
           <div className="modal-buttons">

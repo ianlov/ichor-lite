@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Receipt from "./Receipt.jsx";
+import Refuel from "./Refuel.jsx";
 
 const Form = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -79,10 +80,21 @@ const Form = () => {
       </div>
       
       <div className="receipt">
+        <div className="refuel-list">
+          {form.refuels.map((refuel, idx) => (
+            <Refuel
+              key={idx}
+              refuel={refuel}
+              isVisible={isVisible}
+              setIsVisible={setIsVisible}
+            />
+          ))}
+        </div>
+        
         <button 
           type="button"
           onClick={() => setIsVisible(!isVisible)}
-        >New Receipt</button>
+        >(+) Receipt</button>
         <Receipt
           isVisible={isVisible}
           setIsVisible={setIsVisible}
@@ -92,10 +104,7 @@ const Form = () => {
       </div>
 
       <div className="submit">
-        <input
-          type="submit"
-          value="Submit"
-        />
+        <button>Submit</button>
       </div>
     </form>
   )

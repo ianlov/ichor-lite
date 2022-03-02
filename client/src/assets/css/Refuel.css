@@ -1,0 +1,19 @@
+.refuel {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.refuel-list {
+  max-height: 50vh;
+  overflow: scroll;
+}
+
+.refuel:nth-child(odd) {
+  background-color: lightgrey;
+}
+
+.refuel > p {
+  font-size: small;
+  margin: 5px auto;
+}
