@@ -3,12 +3,11 @@ import { createPortal } from "react-dom";
 import { useState } from "react";
 
 const Receipt = (props) => {
-  const [isUpdate, setIsUpdate] = useState(false)
   const [receipt, setReceipt] = useState({
     date: "",
     airfield: "",
     address: "",
-    service: "",
+    service: "JET A",
     quantity: "",
     unit: "gallons",
     typeofdoc: "receipt",
@@ -37,7 +36,7 @@ const Receipt = (props) => {
       date: "",
       airfield: "",
       address: "",
-      service: "",
+      service: "JET A",
       quantity: "",
       unit: "gallons",
       typeofdoc: "receipt",
@@ -130,14 +129,14 @@ const Receipt = (props) => {
             id="invoicenumber"
             value={receipt.invoicenumber}
           />
-          {/* <label htmlFor="image">Image</label>
+          <label htmlFor="image">Image</label>
           <input
             onChange={handleChange}
             type="file"
             name="image"
             id="image"
             value={receipt.image}
-          /> */}
+          />
           <div className="modal-buttons">
             <button>Submit</button>
             <button

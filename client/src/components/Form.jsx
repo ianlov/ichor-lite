@@ -2,19 +2,8 @@ import { useState } from "react";
 import Receipt from "./Receipt.jsx";
 import Refuel from "./Refuel.jsx";
 
-const Form = () => {
+const Form = ({ form, setForm }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    start: "",
-    finish: "",
-    AOHS: "71 FTW, VANCE AFB (8/33 FTS)",
-    APC: "AETC",
-    AMDS: "T006A",
-    ASN: "",
-    refuels: []
-  });
-
   const handleChange = (ev) => {
     const { name, value } = ev.target;
     setForm({
@@ -24,7 +13,12 @@ const Form = () => {
   };
 
   return (
-    <form className="main-form">
+    <form
+      className="main-form"
+      action="mailto:ian.lovice@protonmail.com"
+      encType="text/plain"
+      method="post"
+    >
       <label
         htmlFor="name"
       >Name</label>
@@ -36,7 +30,7 @@ const Form = () => {
       />
       <label
         htmlFor="start"
-      >Start</label>
+      >Mission Start</label>
       <input
         type="date"
         name="start"
@@ -46,7 +40,7 @@ const Form = () => {
       />
       <label
         htmlFor="finish"
-      >Finish</label>
+      >Mission End</label>
       <input
         type="date"
         name="finish"
@@ -63,17 +57,81 @@ const Form = () => {
         value={form.ASN}
         onChange={handleChange}
       />
+      <input
+        type="hidden"
+        name="AOHS"
+        value={form.AOHS}
+      />
+      <input
+        type="hidden"
+        name="APC"
+        value={form.APC}
+      />
+      <input
+        type="hidden"
+        name="AMDS"
+        value={form.AMDS}
+      />
       <div className="refuel-list">
         {form.refuels.map((refuel, idx) => (
-          <Refuel
+          <div
             key={idx}
-            position={idx}
-            refuel={refuel}
-            isVisible={isVisible}
-            setIsVisible={setIsVisible}
-            form={form}
-            setForm={setForm}
-          />
+            className="refuel-container"
+          >
+            <Refuel
+              position={idx}
+              refuel={refuel}
+              isVisible={isVisible}
+              setIsVisible={setIsVisible}
+              form={form}
+              setForm={setForm}
+            />
+            <input
+              type="hidden"
+              name={`date ${idx+1}`}
+              value={form.refuels[idx].date}
+            />
+            <input
+              type="hidden"
+              name={`airfield ${idx+1}`}
+              value={form.refuels[idx].airfield}
+            />
+            <input
+              type="hidden"
+              name={`address ${idx+1}`}
+              value={form.refuels[idx].address}
+            />
+            <input
+              type="hidden"
+              name={`service ${idx+1}`}
+              value={form.refuels[idx].service}
+            />
+            <input
+              type="hidden"
+              name={`quantity ${idx+1}`}
+              value={form.refuels[idx].quantity}
+            />
+            <input
+              type="hidden"
+              name={`unit ${idx+1}`}
+              value={form.refuels[idx].unit}
+            />
+            <input
+              type="hidden"
+              name={`typeofdoc ${idx+1}`}
+              value={form.refuels[idx].typeofdoc}
+            />
+            <input
+              type="hidden"
+              name={`invoicenumber ${idx+1}`}
+              value={form.refuels[idx].invoicenumber}
+            />
+            <input
+              type="hidden"
+              name={`image ${idx+1}`}
+              value={form.refuels[idx].image}
+            />
+          </div>
         ))}
       </div>
       <button

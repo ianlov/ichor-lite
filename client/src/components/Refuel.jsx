@@ -1,16 +1,13 @@
 import "../css/Refuel.css";
 
 const Refuel = (props) => {
-  const handleEdit = (ev) => {
-
-    props.setIsVisible(!props.isVisible)
-  }
-
   const handleDelete = () => {
+    const newRefuels = props.form.refuels.filter((refuel, index) => index !== props.position)
+
     props.setForm({
       ...props.form,
       refuels: [
-        
+        ...newRefuels
       ]
     })
   }
@@ -22,8 +19,7 @@ const Refuel = (props) => {
       <p>{props.refuel.service}</p>
       <p>{props.refuel.quantity} {props.refuel.unit}</p>
       <p>{props.refuel.invoicenumber}</p>
-      <button type="button" onClick={handleEdit}>Edit</button>
-      <button type="button" onClick={handleDelete}>Delete</button>
+      <button className="delete" type="button" onClick={handleDelete}>X</button>
     </div>
   )
 }

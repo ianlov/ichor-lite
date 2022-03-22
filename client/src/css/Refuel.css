@@ -1,7 +1,6 @@
 .refuel {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 16.667% 16.667% 16.667% 16.667% 16.667% 16.667%;
 }
 
 .refuel-list {
@@ -9,11 +8,17 @@
   overflow: scroll;
 }
 
-.refuel:nth-child(odd) {
+.refuel-container:nth-child(even) {
   background-color: lightgrey;
 }
 
 .refuel > p {
   font-size: small;
   margin: 5px auto;
+}
+
+.delete {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
 }
